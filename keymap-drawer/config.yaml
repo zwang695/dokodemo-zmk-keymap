@@ -14,62 +14,47 @@ draw_config:
   style_layer_activators: true
   glyph_tap_size: 22
   svg_extra_style: |
-    .combopos-0 text.combo.tap { font-size: 12px; font-weight: 600; }
+    .combopos-0 text.combo.tap,
     .combopos-1 text.combo.tap,
     .combopos-2 text.combo.tap { font-size: 20px; }
+    .combopos-3 text.combo.tap { font-size: 12px; font-weight: 600; }
 
     .key.special text.tap { font-size: 20px; }
 
-    .layer-NavNum > text.label { fill: #2563eb; }
-    .layer-NavNum rect.key { stroke: #93c5fd; }
-    .layer-NavNum .held rect.key { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; }
+    .layer-Cursor > text.label { fill: #2563eb; }
+    .layer-Cursor rect.key { stroke: #93c5fd; }
+    .layer-Cursor .held rect.key { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; }
 
-    .layer-Symbols > text.label { fill: #d97706; }
-    .layer-Symbols rect.key { stroke: #fcd34d; }
-    .layer-Symbols .held rect.key { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+    .layer-Symbol > text.label { fill: #d97706; }
+    .layer-Symbol rect.key { stroke: #fcd34d; }
+    .layer-Symbol .held rect.key { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
 
-    .layer-Fn > text.label { fill: #15803d; }
-    .layer-Fn rect.key { stroke: #86efac; }
-    .layer-Fn .held rect.key { fill: #dcfce7; stroke: #15803d; stroke-width: 2; }
+    .layer-Num > text.label { fill: #15803d; }
+    .layer-Num rect.key { stroke: #86efac; }
+    .layer-Num .held rect.key { fill: #dcfce7; stroke: #15803d; stroke-width: 2; }
 
-    .layer-Gaming > text.label { fill: #7c3aed; }
-    .layer-Gaming rect.key { stroke: #c4b5fd; }
+    .layer-Magic > text.label { fill: #7c3aed; }
+    .layer-Magic rect.key { stroke: #c4b5fd; }
 
-    .key.trigger-nav rect.key {
+    .key.trigger-cursor rect.key {
       fill: #dbeafe; stroke: #2563eb; stroke-width: 2;
     }
-    .key.trigger-symbols rect.key {
+    .key.trigger-symbol rect.key {
       fill: #fef3c7; stroke: #d97706; stroke-width: 2;
     }
-    .key.trigger-fn rect.key {
+    .key.trigger-num rect.key {
       fill: #dcfce7; stroke: #15803d; stroke-width: 2;
     }
-    .combo.trigger-gaming rect.combo {
+    .combo.trigger-magic rect.combo {
       fill: #ede9fe; stroke: #7c3aed; stroke-width: 2;
     }
-    .combo.trigger-gaming use.gamepad { color: #7c3aed; }
-    .key.trigger-nav text.hold {
+    .key.trigger-cursor text.hold {
       fill: #2563eb;
       font-size: 16.5px;
       font-weight: bold;
     }
-    .key.nav-lock text.tap {
-      fill: #2563eb;
-      font-size: 16.5px;
-      font-weight: bold;
-    }
-    .key.nav-lock text.hold {
-      fill: #24292e;
-      font-size: 11px;
-      font-weight: normal;
-    }
-    .key.trigger-symbols text.hold { fill: #d97706; font-weight: bold; }
-    .key.fn-label text.hold {
-      fill: #24292e;
-      font-size: 11px;
-      font-weight: normal;
-      transform: translateY(-4px);
-    }
+    .key.trigger-symbol text.hold { fill: #d97706; font-weight: bold; }
+    .key.trigger-num text.hold { fill: #15803d; font-weight: bold; }
 
   # Font Awesome Free bluetooth-b, CC BY 4.0: https://fontawesome.com/license/free
   glyphs:
@@ -77,29 +62,32 @@ draw_config:
       <svg viewBox="0 0 256 512">
         <path d="M164.9 260L257.5 156.7 111.6 0 111.6 206.3 25.4 120.2-6 151.6 102.1 260-6 368.4 25.4 399.8 111.6 313.7 114.3 512 262.8 363.4 164.9 260zm40.9-103-50 50-.3-100.3 50.3 50.3zm-50 156 50 50-50.3 50.3.3-100.3z"/>
       </svg>
-    gamepad: |
-      <svg viewBox="0 0 24 24">
-        <path style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" d="M8 8h8a5 5 0 0 1 4.7 3.3l1.1 3.1a3 3 0 0 1-5.2 2.8L15 15H9l-1.6 2.2a3 3 0 0 1-5.2-2.8l1.1-3.1A5 5 0 0 1 8 8Z M7 11v4 M5 13h4 M16.5 11.5h.01 M18.5 13.5h.01"/>
-      </svg>
-
 parse_config:
   raw_binding_map:
     "&bootloader": "Boot"
     "&sys_reset": "Reset"
-    "&studio_unlock": "Studio 🔓"
-    "&bt_sel1_clr": {t: "$$bluetooth$$", h: "1 / ⇧ Clear"}
-    "&bt BT_SEL 0": {t: "$$bluetooth$$", h: "0"}
-    "&bt BT_SEL 2": {t: "$$bluetooth$$", h: "2"}
-    "&fnhrm LGUI C_PP": {t: "⏯", h: "◆"}
-    "&fnhrm LCTRL C_MUTE": {t: "♪×", h: "⌃"}
-    "&fnhrm LALT C_AL_LOCK": {t: "Lock", h: "⌥"}
-    "&fnhrm LSHIFT PSCRN": {t: "Print", h: "⇧"}
+    "&sqt_qmark": {t: "'", s: "?"}
+    "&arrow_morph": "→"
+    "&search_selected": "Search"
+    "&select_word_back": "Select ←"
+    "&select_word": "Select word"
+    "&select_line": "Select line"
+    "&mkp LCLK": "Click"
+    "&kp LG(TAB)": "Cycle app"
+    "&out OUT_USB": "USB"
+    "&out OUT_BLE": "BLE"
+    "&bt_0": {t: "$$bluetooth$$", h: "0"}
+    "&bt_1": {t: "$$bluetooth$$", h: "1"}
+    "&bt_2": {t: "$$bluetooth$$", h: "2"}
+    "&bt_3": {t: "$$bluetooth$$", h: "3"}
+    "&bt BT_CLR": {t: "$$bluetooth$$", h: "Clear"}
+    "&tog COLEMAK_L": "Layout"
     "&caps_word": "Caps Word"
   layer_legend_map:
-    NavNum: "⌖"
-    Symbols: "#"
-    Fn: "fn"
-    Gaming: "$$gamepad$$"
+    Cursor: "⌖"
+    Symbol: "#"
+    Num: "123"
+    Magic: "✦"
   modifier_fn_map:
     left_ctrl: "⌃"
     right_ctrl: "⌃"
@@ -173,6 +161,7 @@ parse_config:
     LCTRL: "⌃"
     RCTRL: "⌃"
     LSHFT: "⇧"
+    RSHFT: "⇧"
     RSHIFT: "⇧"
     LALT: "⌥"
     RALT: "⌥"
@@ -212,26 +201,19 @@ parse_config:
     SLCK: "Scroll"
     INS: "Insert"
   zmk_combos:
-    combo_caps_word:
-      k: "Caps Word"
-      l: [Base]
-      w: 64
-      h: 30
+    combo_tab:
+      k: "⇥"
+      l: [QWERTY, Colemak-DH]
     combo_escape:
       k: "⎋"
-      l: [Base]
-    combo_enter:
-      k: "⏎"
-      l: [Base]
-    combo_gaming_on:
-      k: "$$gamepad$$"
-      l: [Base]
-      type: trigger-gaming
-      w: 32
-      h: 30
-    combo_gaming_off:
-      k: "Base"
-      l: [Gaming]
-      w: 44
+      l: [QWERTY, Colemak-DH]
+    combo_magic:
+      k: "✦"
+      l: [QWERTY, Colemak-DH]
+      type: trigger-magic
+    combo_caps_word:
+      k: "Caps Word"
+      l: [QWERTY, Colemak-DH]
+      w: 64
       h: 30
   zmk_preamble: "#define KEYMAP_DRAWER"

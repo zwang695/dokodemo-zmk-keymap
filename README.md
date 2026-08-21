@@ -4,18 +4,22 @@
 
 # ZMK Configuration for DokoDemo
 
-This repository contains the default DokoDemo firmware and keymap. The keymap
-uses firmware-level Colemak-DH on a QWERTY host and is inspired by Selenium's
-compact layer design.
+This repository contains the DokoDemo firmware and a 34-key layout derived from
+the companion Voyager QMK and Go60 ZMK keymaps. QWERTY is the default base;
+Colemak-DH is a complete alternate base toggled from the Magic layer.
 
 Highlights:
 
-- bilateral home-row mods in Alt, Ctrl, GUI order;
-- sticky Shift plus dual Backspace/Space NavNum thumb keys;
-- a shared navigation and numpad layer;
-- Selenium-style Symbols and Fn/Media layers;
-- Caps Word, Escape, and Enter combos; and
-- a toggleable QWERTY gaming layer with dedicated left-thumb Space.
+- Go60-style bilateral home-row behaviors: 280 ms tapping term, 125 ms quick
+  tap, opposite-hand triggers, and per-finger prior-idle timing;
+- `F`/`J` on QWERTY and `T`/`N` on Colemak-DH hold the Symbol layer;
+- Backspace/Cursor, dedicated Shift, Enter, and Space/Num thumb keys;
+- `Q+W` Tab, `A+S` Escape, `Z+X` momentary Magic, and `O+P` Caps Word combos,
+  all using a 25 ms timeout and 100 ms prior-idle requirement;
+- a symbol-only Symbol layer, transparent unused Num positions, and no Cursor
+  or Num locks;
+- a base apostrophe key whose shifted output is `?`; and
+- per-half boot/reset controls plus output and Bluetooth selection on Magic.
 
 ## Detailed keymap
 
@@ -29,9 +33,9 @@ Regenerate the parsed keymap and SVG with:
 make keymap
 ```
 
-This also creates `keymap-drawer/keymap-compact.svg`: one physical keyboard
-with color-coded values from every user-facing layer. Run `make keymap-compact`
-when you only need to refresh the shareable composite SVG.
+This also creates `keymap-drawer/keymap-compact.svg`, a summary containing the
+QWERTY and four functional layers. Run `make keymap-compact` when you only need
+to refresh that shareable summary.
 
 Create the tracked 3840px PNG used above with:
 

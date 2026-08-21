@@ -11,28 +11,28 @@ import yaml
 LEGEND_HEIGHT = 49
 LEGEND = """<g class="keymap-legend">
 <rect x="20" y="3" width="692" height="41" rx="6" fill="#f6f8fa" stroke="#c9cccf"/>
-<text x="30" y="17" style="font-size:11px;text-anchor:start">⌃ Ctrl · ⌥ Alt · ◆ GUI · <tspan style="fill:#9333ea;font-weight:bold">purple top = Shift output</tspan> · bottom legend = hold</text>
-<text x="30" y="35" style="font-size:11px;text-anchor:start"><tspan style="fill:#2563eb;font-weight:bold">⌖ NavNum</tspan> · <tspan style="fill:#d97706;font-weight:bold"># Symbols</tspan> · <tspan style="fill:#15803d;font-weight:bold">fn Fn</tspan> · <tspan style="fill:#7c3aed;font-weight:bold">Gaming</tspan> · both inner thumbs = Fn</text>
+<text x="30" y="17" style="font-size:11px;text-anchor:start">⌃ Ctrl · ⌥ Alt · ◆ GUI · purple top = Shift output · bottom legend = hold</text>
+<text x="30" y="35" style="font-size:11px;text-anchor:start"><tspan style="fill:#2563eb;font-weight:bold">⌖ Cursor</tspan> · <tspan style="fill:#d97706;font-weight:bold"># Symbol</tspan> · <tspan style="fill:#15803d;font-weight:bold">123 Num</tspan> · <tspan style="fill:#7c3aed;font-weight:bold">✦ Magic combo</tspan></text>
 </g>"""
 
 TRIGGER_TYPES = {
-    "⌖": "trigger-nav",
-    "#": "trigger-symbols",
-    "fn": "trigger-fn",
+    "⌖": "trigger-cursor",
+    "#": "trigger-symbol",
+    "123": "trigger-num",
 }
 
 SPECIAL_TAPS = {
-    "⇧", "⌫", "⎵", "⇥", "⏎", "⎋", "⌦",
+    "⇧", "⌫", "⎵", "⇥", "⏎", "⎋", "⌦", "✦",
     "↖", "↘", "⇞", "⇟", "↑", "↓", "←", "→",
-    "⌃⌥◆⇧⎵", "⏮", "⏭", "⏯",
 }
 
 SHIFTED_SYMBOLS = {
     ";": ":",
     ",": "<",
     ".": ">",
-    "/": "?",
 }
+
+LAYER_ORDER = ("QWERTY", "Colemak-DH", "Cursor", "Symbol", "Num", "Magic")
 
 
 def add_type(key: dict, key_type: str) -> None:
@@ -47,23 +47,17 @@ def format_yaml(path: Path) -> None:
     keymap = yaml.safe_load(path.read_text(encoding="utf-8"))
     layers = keymap.get("layers", {})
 
-    # Show the US-QWERTY host's shifted punctuation on the Colemak-DH base.
-    base = layers.get("Base", [])
-    for position, key in enumerate(base):
-        tap = key.get("t") if isinstance(key, dict) else key
-        shifted = SHIFTED_SYMBOLS.get(tap)
-        if not shifted:
-            continue
-        if not isinstance(key, dict):
-            key = {"t": key}
-            base[position] = key
-        key["s"] = shifted
-
-    # Present the persistent numeric mode as a lock of NavNum instead of the
-    # parser's generic layer number + "toggle" label.
-    nav_num = layers.get("NavNum")
-    if nav_num and isinstance(nav_num[5], dict):
-        nav_num[5] = {"t": "⌖", "h": "lock", "type": "trigger-nav nav-lock"}
+    # Show standard shifted punctuation alongside the custom quote/question key.
+    for base_name in ("QWERTY", "Colemak-DH"):
+        base = layers.get(base_name, [])
+        for position, key in enumerate(base):
+            tap = key.get("t") if isinstance(key, dict) else key
+            shifted = SHIFTED_SYMBOLS.get(tap)
+            if shifted:
+                if not isinstance(key, dict):
+                    key = {"t": key}
+                    base[position] = key
+                key["s"] = shifted
 
     for layer in layers.values():
         for position, key in enumerate(layer):
@@ -77,18 +71,11 @@ def format_yaml(path: Path) -> None:
                 add_type(key, "special")
 
             trigger_type = TRIGGER_TYPES.get(key.get("h"))
-            if key.get("h") == "fn":
-                add_type(key, "fn-label")
             structural_types = set(key.get("type", "").split())
             if trigger_type and not structural_types.intersection({"held", "trans"}):
                 add_type(key, trigger_type)
 
-    ordered_layers = {}
-    for name in ("Base", "Symbols", "NavNum", "Fn", "Gaming"):
-        if name in layers:
-            ordered_layers[name] = layers[name]
-    keymap["layers"] = ordered_layers
-
+    keymap["layers"] = {name: layers[name] for name in LAYER_ORDER if name in layers}
     path.write_text(
         yaml.safe_dump(keymap, sort_keys=False, allow_unicode=True),
         encoding="utf-8",
@@ -98,19 +85,16 @@ def format_yaml(path: Path) -> None:
 def format_svg(path: Path) -> None:
     svg = path.read_text(encoding="utf-8")
 
-    # keymap-drawer wraps custom SVGs in another <svg>; converting each custom
-    # definition to a symbol makes <use> render consistently everywhere.
-    for glyph in ("bluetooth", "gamepad"):
-        svg = re.sub(
-            rf'<svg id="{glyph}">\s*<svg viewBox="([^"]+)">(.*?)</svg>\s*</svg>',
-            rf'<symbol id="{glyph}" viewBox="\1">\2</symbol>',
-            svg,
-            flags=re.DOTALL,
-        )
+    # keymap-drawer wraps custom SVGs in another <svg>; a symbol renders reliably.
+    svg = re.sub(
+        r'<svg id="bluetooth">\s*<svg viewBox="([^"]+)">(.*?)</svg>\s*</svg>',
+        r'<symbol id="bluetooth" viewBox="\1">\2</symbol>',
+        svg,
+        flags=re.DOTALL,
+    )
 
     opening_end = svg.index(">") + 1
     opening = svg[:opening_end]
-
     height = re.search(r'height="([\d.]+)"', opening)
     view_box = re.search(r'viewBox="([\d.-]+) ([\d.-]+) ([\d.]+) ([\d.]+)"', opening)
     if not height or not view_box:
