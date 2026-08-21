@@ -14,8 +14,8 @@ Highlights:
   tap, opposite-hand triggers, and per-finger prior-idle timing;
 - `F`/`J` on QWERTY and `T`/`N` on Colemak-DH hold the Symbol layer;
 - Backspace/Cursor, dedicated Shift, Enter, and Space/Num thumb keys;
-- `Q+W` Tab, `A+S` Escape, `Z+X` momentary Magic, and `O+P` Caps Word combos,
-  all using a 25 ms timeout and 100 ms prior-idle requirement;
+- `Q+W` Tab and `Z+X` momentary Magic combos using a 35 ms timeout, plus
+  `A+S` Escape and `O+P` Caps Word at 25 ms; all require 100 ms prior idle;
 - a symbol-only Symbol layer, transparent unused Num positions, and no Cursor
   or Num locks;
 - a base apostrophe key whose shifted output is `?`; and
