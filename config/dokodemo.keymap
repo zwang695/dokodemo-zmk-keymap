@@ -78,9 +78,9 @@
             display-name = "Magic";
             bindings = <
             &kp F1       &kp F2       &kp F3       &kp F4       &kp F5            &kp F6       &kp F7       &kp F8       &kp F9       &kp F10
-            &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &bootloader  &sys_reset        &bootloader  &sys_reset   &kp F11      &kp F12      &trans
-            &trans       &trans       &trans       &out OUT_USB &out OUT_BLE      &bt_0        &bt_1        &bt_2        &bt_3        &bt BT_CLR
-                                               &tog COLEMAK_L &trans                &trans       &trans
+            &trans       &trans       &kp C_VOL_DN &kp C_VOL_UP &sys_reset        &bootloader  &sys_reset   &kp F11      &kp F12      &trans
+            &trans       &trans       &kp C_MUTE   &out OUT_USB &out OUT_BLE      &bt_0        &bt_1        &bt_2        &bt_3        &bt BT_CLR
+                                               &tog COLEMAK_L &bootloader           &trans       &trans
             >;
         };
     };
@@ -95,7 +95,7 @@
         combo_tab {
             timeout-ms = <35>;
             require-prior-idle-ms = <100>;
-            key-positions = <0 1>;
+            key-positions = <26 27>;
             bindings = <&kp TAB>;
             layers = <QWERTY_L COLEMAK_L>;
         };
@@ -103,7 +103,7 @@
         combo_escape {
             timeout-ms = <25>;
             require-prior-idle-ms = <100>;
-            key-positions = <10 11>;
+            key-positions = <21 22>;
             bindings = <&esch LC(LALT) ESC>;
             layers = <QWERTY_L COLEMAK_L>;
         };
@@ -119,7 +119,7 @@
         combo_caps_word {
             timeout-ms = <25>;
             require-prior-idle-ms = <100>;
-            key-positions = <8 9>;
+            key-positions = <27 28>;
             bindings = <&caps_word>;
             layers = <QWERTY_L COLEMAK_L>;
         };

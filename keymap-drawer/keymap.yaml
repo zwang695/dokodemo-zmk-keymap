@@ -254,10 +254,12 @@ layers:
   - F8
   - F9
   - F10
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
   - ♪−
   - ♪+
-  - ♪×
-  - Boot
   - Reset
   - Boot
   - Reset
@@ -267,8 +269,7 @@ layers:
     type: trans
   - type: held
   - type: held
-  - t: ▽
-    type: trans
+  - ♪×
   - USB
   - BLE
   - t: $$bluetooth$$
@@ -282,23 +283,22 @@ layers:
   - t: $$bluetooth$$
     h: Clear
   - Layout
-  - t: ▽
-    type: trans
+  - Boot
   - t: ▽
     type: trans
   - t: ▽
     type: trans
 combos:
 - p:
-  - 0
-  - 1
+  - 26
+  - 27
   k: ⇥
   l:
   - QWERTY
   - Colemak-DH
 - p:
-  - 10
-  - 11
+  - 21
+  - 22
   k: ⎋
   l:
   - QWERTY
@@ -312,8 +312,8 @@ combos:
   - Colemak-DH
   type: trigger-magic
 - p:
-  - 8
-  - 9
+  - 27
+  - 28
   k: Caps Word
   l:
   - QWERTY
