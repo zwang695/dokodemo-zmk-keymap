@@ -74,24 +74,22 @@
             quick-tap-ms = <300>;
         };
 
-        // Hold for an immediately active Shift; tap for Shift on the next key.
+        // Hold for Shift; tap for one-shot Shift on the next resolved keycode.
         dss: dokodemo_sticky_shift {
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
             bindings = <&kp>;
             release-after-ms = <1000>;
-            // Home-row hold-taps emit their tapped key on release, so this
-            // must also release with that key instead of using quick-release.
+            quick-release;
         };
 
         dsh: dokodemo_shift_hold_sticky {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&kp>, <&dss>;
-            flavor = "hold-preferred";
+            flavor = "balanced";
             tapping-term-ms = <200>;
-            hold-while-undecided;
-            hold-while-undecided-linger;
+            quick-tap-ms = <175>;
         };
 
         // Tap the A+S combo for Escape; hold it with the other hand for Ctrl+Alt.
