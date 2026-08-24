@@ -80,7 +80,8 @@
             #binding-cells = <1>;
             bindings = <&kp>;
             release-after-ms = <1000>;
-            quick-release;
+            // Home-row hold-taps emit their tapped key on release, so this
+            // must also release with that key instead of using quick-release.
         };
 
         dsh: dokodemo_shift_hold_sticky {
