@@ -81,6 +81,7 @@
             bindings = <&kp>;
             release-after-ms = <1000>;
             quick-release;
+            ignore-modifiers;
         };
 
         dsh: dokodemo_shift_hold_sticky {
