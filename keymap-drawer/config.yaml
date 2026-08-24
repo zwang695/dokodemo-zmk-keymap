@@ -83,6 +83,7 @@ parse_config:
     "&bt BT_CLR": {t: "$$bluetooth$$", h: "Clear"}
     "&tog COLEMAK_L": "Layout"
     "&caps_word": "Caps Word"
+    "&dsh LSHFT LSHFT": {t: "OS ⇧", h: "⇧", type: special}
   layer_legend_map:
     Cursor: "⌖"
     Symbol: "#"

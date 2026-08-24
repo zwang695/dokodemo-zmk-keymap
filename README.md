@@ -13,7 +13,8 @@ Highlights:
 - Go60-style bilateral home-row behaviors: 280 ms tapping term, 125 ms quick
   tap, opposite-hand triggers, and per-finger prior-idle timing;
 - `F`/`J` on QWERTY and `T`/`N` on Colemak-DH hold the Symbol layer;
-- Backspace/Cursor, dedicated Shift, Enter, and Space/Num thumb keys;
+- inner Backspace/Cursor and Space/Num thumbs, with outer one-shot/held Shift
+  and Enter;
 - `M+,` Tab and `Z+X` momentary Magic combos using a 35 ms timeout, plus
   `X+C` Escape and `,+.` Caps Word at 25 ms; all require 100 ms prior idle;
 - a symbol-only Symbol layer, transparent unused Num positions, and no Cursor

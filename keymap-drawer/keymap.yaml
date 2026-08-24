@@ -46,16 +46,17 @@ layers:
     s: '>'
   - t: ''''
     s: '?'
+  - t: OS ⇧
+    h: ⇧
+    type: special
   - t: ⌫
     h: ⌖
     type: special trigger-cursor
-  - t: ⇧
-    type: special
-  - t: ⏎
-    type: special
   - t: ⎵
     h: '123'
     type: special trigger-num
+  - t: ⏎
+    type: special
   Colemak-DH:
   - Q
   - W
@@ -101,16 +102,17 @@ layers:
     s: '>'
   - t: ''''
     s: '?'
+  - t: OS ⇧
+    h: ⇧
+    type: special
   - t: ⌫
     h: ⌖
     type: special trigger-cursor
-  - t: ⇧
-    type: special
-  - t: ⏎
-    type: special
   - t: ⎵
     h: '123'
     type: special trigger-num
+  - t: ⏎
+    type: special
   Cursor:
   - ◆R
   - ⌃⇧⇥
@@ -151,9 +153,9 @@ layers:
   - Select word
   - Select line
   - ⌃◆⇧3
-  - type: held
   - t: ▽
     type: trans
+  - type: held
   - Cycle app
   - t: ▽
     type: trans
@@ -240,9 +242,9 @@ layers:
   - '0'
   - t: ▽
     type: trans
+  - type: held
   - t: ▽
     type: trans
-  - type: held
   Magic:
   - F1
   - F2

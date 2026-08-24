@@ -29,7 +29,7 @@
         //├────────────┼────────────┼────────────┼────────────┼────────────┤   ├────────────┼────────────┼────────────┼────────────┼────────────┤
             &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &sqt_qmark
         //╰────────────┴────────────┴────────────┼────────────┼────────────┤   ├────────────┼────────────┴────────────┴────────────┴────────────╯
-                                               &thumb CURSOR_L BSPC &kp LSHFT      &kp RET      &thumb NUM_L SPACE
+                                               &dsh LSHFT LSHFT &thumb CURSOR_L BSPC      &thumb NUM_L SPACE &kp RET
         //                                     ╰────────────┴────────────╯   ╰────────────┴────────────╯
             >;
         };
@@ -40,7 +40,7 @@
             &kp Q        &kp W        &kp F        &kp P        &kp B            &kp J        &kp L        &kp U        &kp Y        &kp SEMI
             &hml LCTRL A &hml LALT R  &hml LGUI S  &syml SYMBOL_L T &kp G        &kp M        &symr SYMBOL_L N &hmr RGUI E &hmr RALT I &hmr RCTRL O
             &kp Z        &kp X        &kp C        &kp D        &kp V            &kp K        &kp H        &kp COMMA    &kp DOT      &sqt_qmark
-                                               &thumb CURSOR_L BSPC &kp LSHFT      &kp RET      &thumb NUM_L SPACE
+                                               &dsh LSHFT LSHFT &thumb CURSOR_L BSPC      &thumb NUM_L SPACE &kp RET
             >;
         };
 
