@@ -16,7 +16,7 @@ Highlights:
 - inner Backspace/Cursor and Space/Num thumbs, with outer one-shot/held Shift
   and Enter;
 - `M+,` Tab and `Z+X` momentary Magic combos using a 35 ms timeout, plus
-  `X+C` Escape and `,+.` Caps Word at 25 ms; all require 100 ms prior idle;
+  `C+V` Escape and `,+.` Caps Word at 25 ms; all require 100 ms prior idle;
 - a symbol-only Symbol layer, transparent unused Num positions, and no Cursor
   or Num locks;
 - a base apostrophe key whose shifted output is `?`; and
